@@ -136,8 +136,8 @@ public class Elecbill {
 			 
 			 // Prepare the html table to be displayed
 			 output = "<table border='1'>"
-					// + "<th>Bill ID</th>" 
-			 		 + "<th>Account Number</th>" 
+					
+			 		 + " <th>Account Number</th>" 
 					 +"<th>Name</th>"
 					 + "<th>Unit Count</th>"
 					 + "<th> Month</th>" 
@@ -174,7 +174,7 @@ public class Elecbill {
 				 // buttons
 				 output += "<td><form  method='post' action='updateItems.jsp'>"
 				 		+ "<input name='btnUpdate' type='button' value='Update' "
-						 + "class='btnUpdate btn btn-secondary' data-billid='" + billID + "'></td>"
+						 + "class='btnUpdate btn btn-warning' data-billid='" + billID + "'></td>"
 						 + "<td><input name='btnRemove' type='button' value='Remove' "
 						 + "class='btnRemove btn btn-danger' data-billid='" + billID + "'></td></tr>"; 
 			 } 
