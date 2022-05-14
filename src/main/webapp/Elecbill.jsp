@@ -17,10 +17,14 @@ Class.forName("com.mysql.cj.jdbc.Driver");
 <script src="Components/Elecbill.js"></script>
 </head>
 <body >
-	<div class="container"><div class="row"><div class="col-6">
-	<h1>--Electric Bill Generation--</h1>
+
+
+<div class="bg-light">
+	<div class="container"><div class="row"><div class="col-12">
+	
+	<center><h1 style="font-size:380%;">Electric Bill Generation</h1></center>
 <br>
-		 <div class="card">
+		 <div class="card bg-info">
    <div class="card-body">
 			 <form id="formItem" name="formItem" method="post" action="Elecbill.jsp">
 			 Account Number 
@@ -30,7 +34,7 @@ Class.forName("com.mysql.cj.jdbc.Driver");
 			<input id="name" name="name" type="text" 
 			 class="form-control form-control-sm">
 			<br> Unit Count 
-			<input id="unitCount" name="unitCount" type="text" 
+			<input id="unitCount" name="unitCount" type="number" 
 			 class="form-control form-control-sm">
 			<br>Issued Month
 			<input id="month" name="month" type="text" 
@@ -57,5 +61,7 @@ Class.forName("com.mysql.cj.jdbc.Driver");
 	</div>
 	</div>
 	</div>
+	</div>
+
 </body>
 </html>
