@@ -9,10 +9,7 @@ import java.sql.Statement;
 import java.util.Date;
 public class Elecbill {
 	
-	
-	//DB connection
-	
-		//establishing connection
+	        //DB connection
 			private Connection connect() { 
 				
 				Connection con = null; 
@@ -27,11 +24,11 @@ public class Elecbill {
 				return con; 
 			}
 		
-		//read all the users account numbers
 		
-		//Add unit count 
 			
-		    //Add unit count to the user's account
+			
+			
+		    //Insert data to elecbilling_tb
 			public String insertElecbill(String accno, String uname, String unit, String bmonth,String bamount) { 
 						
 						String output = ""; 
@@ -42,15 +39,15 @@ public class Elecbill {
 							Connection con = connect(); 
 							
 							if (con == null) {
-								return "Error while connecting to the database for inserting."; } 
+								return "Error while connecting to the database for insert data."; } 
 								
-								// create a prepared statement
+								//Create a prepared statement
 								String query;
 							
 								query = " insert into elecbilling_tb(`billID`,`AccountNumber`,`name`,`unitCount`,`month`,`billAmount`,`date`)" + " values (?, ?, ?, ?, ?,?,?)" ; 
 								PreparedStatement preparedStmt = con.prepareStatement(query);
 								 
-								// binding values
+								//Binding values
 								preparedStmt.setInt(1, 0); 
 								preparedStmt.setInt(2, Integer.parseInt(accno)); 
 								preparedStmt.setString(3, uname); 
@@ -59,7 +56,7 @@ public class Elecbill {
 								
 								
 								
-								
+								//Calculation object parsing
 								float no = Float.valueOf(unit.toString());
 								String billAmount= String.valueOf(calcElecbillup(no));
 								
@@ -70,7 +67,7 @@ public class Elecbill {
 								
 								
 							
-								// execute the statement
+								//Execute the statement
 								preparedStmt.execute(); 
 								con.close(); 
 								
@@ -80,13 +77,13 @@ public class Elecbill {
 								
 								
 						} catch (Exception e) { 
-							output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}";
+							output = "{\"status\":\"error\", \"data\": \"Error while inserting electric bill details.\"}";
 							System.err.println(e.getMessage()); 
 						}
 						return output; 
 					} 
 			
-			//Calculate bill amount according to usage of unit
+			//Calculate the electric bill amount
 			private float calcElecbill(float no) {
 				
 			float sum=0;
@@ -118,8 +115,8 @@ public class Elecbill {
 		
 		
 
-		//read alredy billed customers
-
+		
+			//Retrive account holders electric bills
 			public String retriveElecbill()
 			{ 
 					String output = ""; 
@@ -130,11 +127,11 @@ public class Elecbill {
 			     Connection con = connect(); 
 				 if (con == null) 
 				 { 
-					 return "Error while connecting to the database for reading."; 
+					 return "Error while connecting to the database for retrive data."; 
 				 }
 			 
 			 
-			 // Prepare the html table to be displayed
+			 //Prepare the html table to be displayed
 			 output = "<table border='1'>"
 					
 			 		 + " <th>Account Number</th>" 
@@ -150,7 +147,7 @@ public class Elecbill {
 			 Statement stmt = (Statement) con.createStatement(); 
 			 ResultSet res = ((java.sql.Statement) stmt).executeQuery(query); 
 			 
-			 // iterate through the rows in the result set
+			 //Iterate through the rows in the result set
 			 while (res.next()) 
 			 { 
 				 String billID = Integer.toString(res.getInt("billID")); 
@@ -160,34 +157,34 @@ public class Elecbill {
 				 String month = res.getString("month"); 
 				 String date = res.getString("date"); 
 				 String billAmount = Float.toString(res.getFloat("billAmount"));
-				 //String issuedDate = res.getString("issuedDate"); 
+				
 				 
 				 
-				 // Add a row into the html table
+				 //Add a row into the html table
 				 output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value='"+billID+"'>"+ AccountNumber+"</td>"; 
-				 //output += "<td>" + AccountNumber+ "</td>"; 
 				 output += "<td>" + name + "</td>"; 
 				 output += "<td>" + unitCount + "</td>";
 				 output += "<td>" + month + "</td>"; 
 				 output += "<td>" + date + "</td>"; 
-				output += "<td>" + billAmount + "</td>";
-				 // buttons
+				 output += "<td>" + billAmount + "</td>";
+				 
+				 //Buttons
 				 output += "<td><form  method='post' action='updateItems.jsp'>"
 				 		+ "<input name='btnUpdate' type='button' value='Update' "
-						 + "class='btnUpdate btn btn-warning' data-billid='" + billID + "'></td>"
-						 + "<td><input name='btnRemove' type='button' value='Remove' "
-						 + "class='btnRemove btn btn-danger' data-billid='" + billID + "'></td></tr>"; 
+						+ "class='btnUpdate btn btn-warning' data-billid='" + billID + "'></td>"
+						+ "<td><input name='btnRemove' type='button' value='Remove' "
+						+ "class='btnRemove btn btn-danger' data-billid='" + billID + "'></td></tr>"; 
 			 } 
 			 
-			// con.close(); 
 			
-			     // Complete the html table
+			
+			     //Complete the html table
 			     output += "</table>"; 
 			 } 
 			 
 			catch (Exception e) 
 			 { 
-				 output = "Error while reading the Billing details."; 
+				 output = "Error while retriving the electric bill details."; 
 				 System.err.println(e.getMessage()); 
 			 } 
 			
@@ -205,7 +202,7 @@ public class Elecbill {
 			 Connection con = connect(); 
 			 if (con == null) 
 			 {
-				 return "Error while connecting to the database for updating."; 
+				 return "Error while connecting to the database for electric bill updating."; 
 				 
 			 } 
 			 // create a prepared statement
@@ -235,7 +232,7 @@ public class Elecbill {
 				 String newItems = retriveElecbill(); 
 				 output = "{\"status\":\"success\", \"data\": \"" + newItems + "\"}";  
 		} catch (Exception e) { 
-			 output = "{\"status\":\"error\", \"data\": \"Error while updating the item.\"}"; 
+			 output = "{\"status\":\"error\", \"data\": \"Error while updating the electric bill.\"}"; 
 			System.err.println(e.getMessage()); 
 		}
 		return output; 
@@ -282,7 +279,7 @@ public class Elecbill {
 				Connection con = connect();
 	
 				if (con == null) {
-					return "Error while connecting to the database for deleting.";
+					return "Error while connecting to the database for electric bill deleting.";
 				}
 	
 				// create a prepared statement
@@ -301,7 +298,7 @@ public class Elecbill {
 
 	
 			} catch (Exception e) {
-				output = "{\"status\":\"error\", \"data\": \"Error while deleting the item.\"}"; 
+				output = "{\"status\":\"error\", \"data\": \"Error while deleting the electric bill.\"}"; 
 				System.err.println(e.getMessage());
 			}
 	

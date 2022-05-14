@@ -26,6 +26,8 @@ public class ElecbillAPI extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,28 +36,29 @@ public class ElecbillAPI extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
+	
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		String output = elecobj.insertElecbill(request.getParameter("AccountNumber"), 
 				 request.getParameter("name"), 
-				request.getParameter("unitCount"), 
-				request.getParameter("month"),
-				request.getParameter("billAmount"));
+				 request.getParameter("unitCount"), 
+				 request.getParameter("month"),
+				 request.getParameter("billAmount"));
 			
-
-response.getWriter().write(output); 
+        response.getWriter().write(output); 
 	}
 
+	
+	
 	/**
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		
 		 Map paras = getParasMap(request); 
 		 String billAmount= paras.get("unitCount").toString();
@@ -63,35 +66,35 @@ response.getWriter().write(output);
 		 Float amount = elecobj.calcElecbillup(unitCount);
 		 String output = elecobj.updateElecbill(paras.get("hidItemIDSave").toString(), 
 											 paras.get("AccountNumber").toString(), 
-											paras.get("name").toString(), 
-											paras.get("unitCount").toString(),
-											paras.get("month").toString(),
-											amount.toString());
+											 paras.get("name").toString(), 
+											 paras.get("unitCount").toString(),
+											 paras.get("month").toString(),
+											 amount.toString());
 											
 											
-		 
-		response.getWriter().write(output); 
-		
-		
-		
-	
-	
-		
+          response.getWriter().write(output); 
+
 	}
+	
+	
+	
 
 	/**
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Map paras = getParasMap(request); 
+		 Map paras = getParasMap(request); 
 		 String output = elecobj.deleteElecbill(paras.get("billID").toString()); 
-		response.getWriter().write(output); 
+		 response.getWriter().write(output); 
 		
 	}
 	
-	// Convert request parameters to a Map
-			private static Map getParasMap(HttpServletRequest request) 
+	
+	
+	
+	 // Convert request parameters to a Map
+     private static Map getParasMap(HttpServletRequest request) 
 			{ 
 			 Map<String, String> map = new HashMap<String, String>(); 
 			try

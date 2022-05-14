@@ -130,6 +130,8 @@ if (status == "success")
 }
 
 
+
+
 // CLIENT-MODEL================================================================
 function validateCustomerForm()
 {
@@ -143,6 +145,8 @@ function validateCustomerForm()
 	{
 	return "Insert First Name.";
 }
+
+
 
 // NAME
 	if ($("#unitCount").val().trim() == "")
