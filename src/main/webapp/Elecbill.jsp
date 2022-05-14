@@ -20,7 +20,8 @@ Class.forName("com.mysql.cj.jdbc.Driver");
 	<div class="container"><div class="row"><div class="col-6">
 	<h1>--Electric Bill Generation--</h1>
 <br>
-		
+		 <div class="card">
+   <div class="card-body">
 			 <form id="formItem" name="formItem" method="post" action="Elecbill.jsp">
 			 Account Number 
 			<input id="AccountNumber" name="AccountNumber" type="text" 
@@ -41,6 +42,8 @@ Class.forName("com.mysql.cj.jdbc.Driver");
 			 class="btn btn-primary">
 			<input type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
 			</form>
+			</div>
+			</div>
   		
   		<div id="alertSuccess" class="alert alert-success"></div>
 				<div id="alertError" class="alert alert-danger"></div>
