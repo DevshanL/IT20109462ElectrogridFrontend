@@ -9,6 +9,7 @@ Class.forName("com.mysql.cj.jdbc.Driver");
 
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,12 +21,14 @@ Class.forName("com.mysql.cj.jdbc.Driver");
 </head>
 
 
+
+
 <body >
 
 <div class="bg-light">
      <div class="container"><div class="row"><div class="col-12">
 	
-	 <center><h1 style="font-size:380%;">Electric Bill Generation</h1></center>
+	 <center><h1 style="font-size:380%;">ELECTRIC BILL GENERATION</h1></center>
 	 
 <hr/>
 
@@ -41,10 +44,11 @@ Class.forName("com.mysql.cj.jdbc.Driver");
 			         <input id="name" name="name" type="text" class="form-control form-control-sm">
 			<br> 
 			         Unit Count 
-			         <input id="unitCount" name="unitCount" type="number" class="form-control form-control-sm">
+			         <input id="unitCount" name="unitCount" type="number"  onkeyup="if(this.value<0)this.value=1"
+    onblur="if(this.value<0)this.value=1"" class="form-control form-control-sm">
 			<br>
 			         Issued Month
-			         <input id="month" name="month" type="text" class="form-control form-control-sm">
+			         <input id="month" name="month" type="month" class="form-control form-control-sm">
 			<br>
 			
 			
@@ -57,17 +61,25 @@ Class.forName("com.mysql.cj.jdbc.Driver");
 			</div>
 			</div>
   		
+  		    <hr/>
+  		    
   		    <div id="alertSuccess" class="alert alert-success"></div>
 			<div id="alertError" class="alert alert-danger"></div>
 			
-			<br>
+		
+			<hr/>
 			
-			<div class="table table-striped " id="divItemsGrid">
+			
+			<center>
+			<div class="table table-striped" id="divItemsGrid">
 				 <%
 				 Elecbill elecobj = new Elecbill(); 
 				 		 out.print(elecobj.retriveElecbill());
 				 %>
 			</div>
+			</center>
+			
+			
 </div>
 </div>
 </div>

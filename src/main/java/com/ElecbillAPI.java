@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class BillingAPI
+ * Servlet implementation class ElecbillAPI
  */
 @WebServlet("/ElecbillAPI")
 public class ElecbillAPI extends HttpServlet {
@@ -93,7 +93,7 @@ public class ElecbillAPI extends HttpServlet {
 	
 	
 	
-	 // Convert request parameters to a Map
+	 //Convert request parameters to a Map
      private static Map getParasMap(HttpServletRequest request) 
 			{ 
 			 Map<String, String> map = new HashMap<String, String>(); 
