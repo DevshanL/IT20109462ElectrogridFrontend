@@ -83,6 +83,9 @@ public class Elecbill {
 						return output; 
 					} 
 			
+			
+			
+			
 			//Calculate the electric bill amount
 			private float calcElecbill(float no) {
 				
@@ -191,6 +194,8 @@ public class Elecbill {
 			
 			return output; 
 		}
+			
+			
 
 	
 		//updateBillDetails
@@ -205,12 +210,12 @@ public class Elecbill {
 				 return "Error while connecting to the database for electric bill updating."; 
 				 
 			 } 
-			 // create a prepared statement
+			 //Create a prepared statement
 			 String query = "UPDATE elecbilling_tb SET AccountNumber=?,name=?,unitCount=?,month=?,billAmount=? ,date=? where billID=?";
 				
 			 PreparedStatement preparedStmt = con.prepareStatement(query);
 			 
-				// binding values
+				//Binding values
 			
 				preparedStmt.setInt(1, Integer.parseInt(accno)); 
 				preparedStmt.setString(2, uname); 
@@ -225,7 +230,7 @@ public class Elecbill {
 				 preparedStmt.setDate(6, new java.sql.Date(date.getTime()));
 				preparedStmt.setInt(7, Integer.parseInt(bid)); 
 			
-				// execute the statement
+				//Execute the statement
 				preparedStmt.execute(); 
 				
 				con.close(); 
@@ -238,6 +243,8 @@ public class Elecbill {
 		return output; 
 	}  
 
+		
+		
 	
 
 		//Calculate bill amount according to usage of unit
@@ -268,6 +275,9 @@ public class Elecbill {
 			
 			
 		}	
+		
+		
+		
 			
 		
 		//Delete billing details
@@ -282,14 +292,14 @@ public class Elecbill {
 					return "Error while connecting to the database for electric bill deleting.";
 				}
 	
-				// create a prepared statement
+				//Create a prepared statement
 				String query = "delete from elecbilling_tb where billID=?";
 				PreparedStatement preparedStmt = con.prepareStatement(query);
 	
-				// binding values
+				//Binding values
 				preparedStmt.setInt(1, Integer.parseInt(billID));
 	
-				// execute the statement
+				//Execute the statement
 				preparedStmt.execute();
 				con.close();
 	

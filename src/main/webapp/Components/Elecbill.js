@@ -124,7 +124,7 @@ if (status == "success")
  $("#alertError").show(); 
  } else
  { 
- $("#alertError").text("Unknown error while deleting.."); 
+ $("#alertError").text("Unknown error while deleting."); 
  $("#alertError").show(); 
  } 
 }
@@ -140,10 +140,15 @@ function validateCustomerForm()
 	{
 	return "Insert Account Number";
 	}
+	
+
+ 		
+	
+	
 	// NAME
 	if ($("#name").val().trim() == "")
 	{
-	return "Insert First Name.";
+	return "Insert Name.";
 }
 
 
